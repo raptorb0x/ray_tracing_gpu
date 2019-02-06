@@ -175,6 +175,16 @@ void render_opencl( uint8_t* pixmap) {
             framebuffer[i+j*width] = Vec3f(j/float(height),i/float(width), 0);
         }
     }*/
+// every pixel in the image has its own thread or "work item",
+	// so the total amount of work items equals the number of pixels
+	size_t global_work_size = width * height;
+	size_t local_work_size = 64; 
+
+	// launch the kernel
+	queue.enqueueNDRangeKernel(kernel, NULL, global_work_size, local_work_size);
+	queue.finish();
+    // read and copy OpenCL output to CPU
+	queue.enqueueReadBuffer(cl_output, CL_TRUE, 0, width * height * sizeof(cl_float3), cpu_output);
 
     #pragma omp parallel for
     for (size_t i = 0; i < height*width; ++i) {
@@ -187,7 +197,7 @@ void render_opencl( uint8_t* pixmap) {
     
 }
 
-//vector<Vec3f> framebuffer(width*height);
+vector<Vec3f> framebuffer(width*height);
 void render_plain( uint8_t* pixmap) {
     
     #pragma omp parallel for 
@@ -225,16 +235,9 @@ int main() {
 	kernel.setArg(1, width);
 	kernel.setArg(2, height);
 
-    // every pixel in the image has its own thread or "work item",
-	// so the total amount of work items equals the number of pixels
-	size_t global_work_size = width * height;
-	size_t local_work_size = 64; 
     
-    // launch the kernel
-	queue.enqueueNDRangeKernel(kernel, NULL, global_work_size, local_work_size);
-	queue.finish();
-    // read and copy OpenCL output to CPU
-	queue.enqueueReadBuffer(cl_output, CL_TRUE, 0, width * height * sizeof(cl_float3), cpu_output);
+    
+    
 
 	
     sf::RenderWindow window(sf::VideoMode(width, height), "SFML");
@@ -263,7 +266,8 @@ int main() {
         current_ticks = clock();
 
         
-        render( pixmap);
+        //render_plain( pixmap);
+		render_opencl(pixmap);
         
         texture.update(pixmap);
         delta_ticks = clock() - current_ticks; //the time, in ms, that took to render the scene
