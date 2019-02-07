@@ -3,8 +3,8 @@ CXX_FLAGS :=  -std=c++11  -fopenmp -O3
 
 BIN		:= bin
 SRC		:= src
-INCLUDE	:= C:\winbuld\SFML\include -IC:\winbuld
-LIB		:= C:\winbuld\SFML\lib -lsfml-graphics -lsfml-system -lsfml-window -LC:\winbuld\CL\lib -lopencl
+INCLUDE	:= D:\winbuld\SFML\include -ID:\winbuld
+LIB		:= D:\winbuld\SFML\lib -lsfml-graphics -lsfml-system -lsfml-window -LD:\winbuld\CL\lib -lopencl
 
 LIBRARIES	:=
 EXECUTABLE	:= main.exe

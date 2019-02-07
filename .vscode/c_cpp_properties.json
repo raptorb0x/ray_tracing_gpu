@@ -6,13 +6,14 @@
             "compilerPath": "C:/winbuld/bingcc.exe",
             "includePath": [
                 "${workspaceFolder}",
-                "C:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
-                "C:/winbuld/x86_64-w64-mingw32/include",
-                "C:/winbuld/SFML/include",
-                "C:/winbuld",
-                "C:/winbuld/SFML/include/SFML",
-                "C:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
-                "C:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32"
+                "D:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include",
+                "D:/winbuld/x86_64-w64-mingw32/include",
+                "D:/winbuld/SFML/include",
+                "D:/winbuld",
+                "D:/winbuld/SFML/include/SFML",
+                "D:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++",
+                "D:/winbuld/lib/gcc/x86_64-w64-mingw32/5.1.0/include/c++/x86_64-w64-mingw32",
+                "D:/winbuld"
             ],
             "defines": [],
             "cStandard": "c11",
